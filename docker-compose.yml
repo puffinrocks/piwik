@@ -12,19 +12,23 @@ services:
             - VIRTUAL_HOST
             - VIRTUAL_PORT=80
         volumes:
-            - ./conf/nginx.conf:/etc/nginx/nginx.conf:ro
+            - ./nginx.conf:/etc/nginx/nginx.conf:ro
+        volumes_from:
+            - fpm
         networks:
             - front
             - back
             - default
 
     fpm:
-        image: piwik
+        image: puffinrocks/piwik
         depends_on:
             - db
         volumes: 
-            - ./conf/ssmtp.conf:/etc/ssmtp/ssmtp.conf
-            - ./conf/revaliases:/etc/ssmtp/revaliases
+            - static:/var/www/html
+        networks:
+            - back
+            - default
     
     db:
         image: puffinrocks/mariadb
@@ -35,6 +39,7 @@ services:
 
 volumes:
     db_data:
+    static:
 
 networks:
     front:
