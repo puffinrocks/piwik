@@ -3,7 +3,7 @@ version: '2'
 services:
 
     main:
-        image: nginx
+        image: puffinrocks/piwik
         depends_on:
             - fpm
         ports:
@@ -11,8 +11,6 @@ services:
         environment:
             - VIRTUAL_HOST
             - VIRTUAL_PORT=80
-        volumes:
-            - ./nginx.conf:/etc/nginx/nginx.conf:ro
         volumes_from:
             - fpm
         networks:
@@ -21,7 +19,7 @@ services:
             - default
 
     fpm:
-        image: puffinrocks/piwik
+        image: piwik
         depends_on:
             - db
         volumes: 
