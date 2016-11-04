@@ -11,22 +11,28 @@ services:
         environment:
             - VIRTUAL_HOST
             - VIRTUAL_PORT=80
-        volumes_from:
-            - fpm
         networks:
             - front
             - back
             - default
+        volumes_from:
+            - fpm
+        tmpfs:
+            - /run
+            - /tmp
 
     fpm:
         image: piwik
         depends_on:
             - db
-        volumes: 
-            - static:/var/www/html
         networks:
             - back
             - default
+        volumes: 
+            - static:/var/www/html
+        tmpfs:
+            - /run
+            - /tmp
     
     db:
         image: puffinrocks/mariadb
