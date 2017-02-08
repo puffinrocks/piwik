@@ -22,7 +22,7 @@ services:
             - /tmp
 
     fpm:
-        image: piwik
+        image: piwik:3.0.1
         depends_on:
             - db
         networks:
