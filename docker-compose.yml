@@ -3,7 +3,7 @@ version: '2'
 services:
 
     main:
-        image: puffinrocks/piwik
+        image: puffinrocks/piwik:3.0.1
         depends_on:
             - fpm
         ports:
