@@ -1,6 +1,6 @@
 FROM nginx
 
-ENV VERSION=$PIWIK_VERSION
+ENV VERSION=3.0.1
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY docker-entrypoint.sh /entrypoint.sh
