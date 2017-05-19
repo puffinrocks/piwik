@@ -31,17 +31,17 @@ services:
         networks:
             - back
             - default
-        volumes: 
+        volumes:
             - static:/var/www/html
         tmpfs:
             - /run
             - /tmp
-    
+
     db:
         image: puffinrocks/mariadb
         environment:
             MYSQL_ROOT_PASSWORD: piwik
-        volumes: 
+        volumes:
             - db_data:/var/lib/mysql
 
 volumes:
